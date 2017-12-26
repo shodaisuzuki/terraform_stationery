@@ -3,17 +3,20 @@ terraformの雛形作成
 ## 1.terraformをダウンロードする
 
 ```
-curl -O https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
-sudo unzip terraform_0.11.1_linux_amd64.zip -d /usr/bin/
-terraform --version
+$ curl -O https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
+$ sudo unzip terraform_0.11.1_linux_amd64.zip -d /usr/bin/
+$ terraform --version
 ```
 
 ## 2. git clone
 ```
-git clone https://github.com/shodaisuzuki/terraform_stationery.git
+$ git clone https://github.com/shodaisuzuki/terraform_stationery.git
 ```
 
 ### 構成について
+
+```
+$ tree
 ├── README.md
 ├── bin
 │   ├── apply
@@ -43,6 +46,7 @@ git clone https://github.com/shodaisuzuki/terraform_stationery.git
 │   └── staging
 └── tfvars
     └── common.tfvars
+```
 
 #### bin
 実行ファイル
