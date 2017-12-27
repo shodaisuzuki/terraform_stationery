@@ -1,0 +1,47 @@
+#!/bin/bash
+
+NEW_ENV=$1
+ROOT_DIR=`(cd $(dirname $0)/..; pwd)`
+
+log() {
+  echo `date '+%Y-%m-%d %H:%M:%S'` $*
+}
+
+error() {
+  log ERROR $*
+}
+info() {
+  log INFO $*
+}
+fail_exit() {
+  log ERROR $*
+  exit 1
+}
+arguments() {
+  echo \
+  "
+  ArgumentsError Require NewEnv
+  
+  USAGE
+  `basename $0` NewEnv
+  "
+}
+
+trap "fail_exit "予期せぬエラーが発生しました。処理を終了します。"" ERR
+
+if [ "$NEW_ENV" = '' ]; then
+  arguments
+  exit 1
+fi
+
+if [ ! -e ${ROOT_DIR}/environments/${NEW_ENV} ]; then
+  echo "ERROR enviroment ${NEW_ENV}は存在しません"
+  exit 1
+fi
+
+cd ${ROOT_DIR}
+rm -r environments/${NEW_ENV}
+rm -r tf/${NEW_ENV}
+
+echo "remove environments/${NEW_ENV}/"
+echo "remove tf/${NEW_ENV}/"

@@ -1,0 +1,55 @@
+#!/bin/bash
+
+NEW_ENV=$1
+ROOT_DIR=`(cd $(dirname $0)/..; pwd)`
+
+log() {
+  echo `date '+%Y-%m-%d %H:%M:%S'` $*
+}
+
+error() {
+  log ERROR $*
+}
+info() {
+  log INFO $*
+}
+fail_exit() {
+  log ERROR $*
+  exit 1
+}
+arguments() {
+  echo \
+  "
+  ArgumentsError Require NewEnv
+  
+  USAGE
+  `basename $0` NewEnv
+  "
+}
+
+trap "fail_exit "予期せぬエラーが発生しました。処理を終了します。"" ERR
+
+if [ "$NEW_ENV" = '' ]; then
+  arguments
+  exit 1
+fi
+
+if [ -e ${ROOT_DIR}/environments/${NEW_ENV} ]; then
+  echo "ERROR enviroment ${NEW_ENV}は既に存在しています"
+  exit 1
+fi
+
+cd ${ROOT_DIR}
+cp -r generator/template environments/${NEW_ENV}
+mv environments/${NEW_ENV}/config/template.conf environments/${NEW_ENV}/config/${NEW_ENV}.conf
+mv environments/${NEW_ENV}/tfvars/template.tfvars environments/${NEW_ENV}/tfvars/${NEW_ENV}.tfvars
+mkdir tf/${NEW_ENV}
+
+echo "create environments/${NEW_ENV}/"
+echo "create environments/${NEW_ENV}/config"
+echo "create environments/${NEW_ENV}/config/${NEW_ENV}.conf"
+echo "create environments/${NEW_ENV}/tfvars/${NEW_ENV}.conf"
+echo "create environments/${NEW_ENV}/tfvars"
+echo "create environments/${NEW_ENV}/user_data"
+echo "create environments/${NEW_ENV}/user_data.sh"
+echo "create tf/${NEW_ENV}"
