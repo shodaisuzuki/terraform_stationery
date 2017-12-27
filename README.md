@@ -3,17 +3,20 @@ terraformの雛形作成
 ## 1.terraformをダウンロードする
 
 ```
-curl -O https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
-sudo unzip terraform_0.11.1_linux_amd64.zip -d /usr/bin/
-terraform --version
+$ curl -O https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
+$ sudo unzip terraform_0.11.1_linux_amd64.zip -d /usr/bin/
+$ terraform --version
 ```
 
 ## 2. git clone
 ```
-git clone https://github.com/shodaisuzuki/terraform_stationery.git
+$ git clone https://github.com/shodaisuzuki/terraform_stationery.git
 ```
 
 ### 構成について
+
+```
+$ tree
 ├── README.md
 ├── bin
 │   ├── apply
@@ -43,6 +46,7 @@ git clone https://github.com/shodaisuzuki/terraform_stationery.git
 │   └── staging
 └── tfvars
     └── common.tfvars
+```
 
 #### bin
 実行ファイル
@@ -61,16 +65,16 @@ tf直下の.tfは共通のリソースを記述
 tfファイルで使用する設定値
 共通の設定値をここに書き、環境別の設定値はenvironmentsの方に書く
 
-##参考
+## 参考
 
-##リファレンス
+### リファレンス
 https://www.terraform.io/docs/commands/index.html
 
-###構築
+### 構築
 http://made.livesense.co.jp/entry/2016/07/12/083000
 https://tech.recruit-mp.co.jp/infrastructure/post-10665/
 https://qiita.com/zembutsu/items/93e546df765f8b2c4f32
 
-###壊れた時の復旧参考
+### 壊れた時の復旧参考
 https://qiita.com/minamijoyo/items/e0f69bfa853bef60977e#%E3%83%80%E3%83%9F%E3%83%BC%E3%81%AEtf%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E4%BD%9C%E3%82%8B
 https://blog.stormcat.io/post/entry/2015/06/01/210500/
