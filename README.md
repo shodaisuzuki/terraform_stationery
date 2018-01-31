@@ -1,4 +1,4 @@
-terraformの雛形作成
+# terraformの雛形作成
 
 ## 1.terraformをダウンロードする
 
@@ -13,7 +13,7 @@ $ terraform --version
 $ git clone https://github.com/shodaisuzuki/terraform_stationery.git
 ```
 
-### 構成について
+## 構成
 
 ```
 $ tree
@@ -48,22 +48,39 @@ $ tree
     └── common.tfvars
 ```
 
-#### bin
-実行ファイル
-./terraform_stationery/bin/plan | apply と実行する
+### bin
+terraform実行ファイル
 
-#### enviroments
+```
+$ ./terraform_stationery/bin/plan | apply
+```
+
+### enviroments
 環境ごとの設定値を記述
 
-#### tf
+### tf
 AWS構成を定義する
 ファイル名はサービス単位で作成
 tf直下の.tfは共通のリソースを記述
 環境名の下には環境別のリソースを記述する
 
-#### tfvars
+### tfvars
 tfファイルで使用する設定値
 共通の設定値をここに書き、環境別の設定値はenvironmentsの方に書く
+
+### lib
+
+#### lib/add_env
+環境を追加する
+```
+$ ./lib/ add_env ENV
+```
+
+#### lib/remove_env
+環境を削除する
+```
+$ ./lib/ remove_env ENV
+```
 
 ## 参考
 
